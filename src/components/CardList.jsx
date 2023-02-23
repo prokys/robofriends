@@ -2,10 +2,10 @@ import React from 'react';
 import Card from './Card.jsx';
 
 const CardList = ({robots}) => {
-	if (true) {
+	if (false) {
 		throw new Error('Noooo')
 	}
-
+	else
 	return(
 		<div>
 		{
