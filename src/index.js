@@ -1,15 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {Provider} from 'react-redux';
+import { legacy_createStore, combineReducers, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger'
 import './index.css';
 import App from './containers/App.jsx'
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
+import { searchRobots, requestRobots } from './reducers';
+
+const logger = createLogger();
+const rootReducers = combineReducers({searchRobots, requestRobots})
+const store = legacy_createStore(rootReducers, applyMiddleware(thunkMiddleware, logger));
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    <Provider store = {store}>
+      <App/>
+    </Provider>
   </React.StrictMode>
 );
 
